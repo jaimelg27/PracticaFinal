@@ -22,9 +22,9 @@ public class Controlador {
 	private VentaRepository ventarepo;
 	
 	@RequestMapping("/")
-	 @ResponseBody
-		 String home() {
-		 	return "Practica 4";
-		 }
+	@ResponseBody
+	String home() {
+	 	return "Practica 4";
+	}
 
 }
