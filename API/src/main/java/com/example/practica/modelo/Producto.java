@@ -1,33 +1,40 @@
 package com.example.practica.modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "productos", catalog = "practica3")
 public class Producto {
-	private byte id;
+	@Id
+	@Column(name="id")
+	private int id;
+	@Column(name="descripcion")
 	private String descripcion;
-	private Integer stock;
-	private Float pvp;
+	@Column(name="stockanual")
+	private int stockanual;
+	@Column(name="pvp")
+	private int pvp;
 	
 	public Producto() {
 		
 	}
 
-	public Producto(byte id, String descripcion, Integer stock, Float pvp) {
+	public Producto(int id, String descripcion, int stockanual, int pvp) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
-		this.stock = stock;
+		this.stockanual = stockanual;
 		this.pvp = pvp;
 	}
 
-	public byte getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(byte id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -39,21 +46,19 @@ public class Producto {
 		this.descripcion = descripcion;
 	}
 
-	public Integer getStock() {
-		return stock;
+	public int getStockanual() {
+		return stockanual;
 	}
 
-	public void setStock(Integer stock) {
-		this.stock = stock;
+	public void setStockanual(int stockanual) {
+		this.stockanual = stockanual;
 	}
 
-	public Float getPvp() {
+	public int getPvp() {
 		return pvp;
 	}
 
-	public void setPvp(Float pvp) {
+	public void setPvp(int pvp) {
 		this.pvp = pvp;
-	}
-	
-
+	};
 }
