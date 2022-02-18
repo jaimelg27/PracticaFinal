@@ -1,11 +1,13 @@
 package com.example.practica.controlador;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -70,5 +72,19 @@ public class Controlador {
 	@RequestMapping(value = "/productos", method = RequestMethod.PUT)
     public ResponseEntity<Productos> actualizar(@RequestBody Productos p){
         return new ResponseEntity<Productos>(productoserv.updatebyID(p),HttpStatus.OK);
+    }
+	
+	//Eliminar
+	@RequestMapping(value = "/productos/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> eliminarPorID(@PathVariable("id") byte id){
+    	Optional<Productos> empOPT=productoserv.consultaPorID(id);
+    	if (empOPT.isPresent()) {
+    		Productos emp=empOPT.get();
+    		productoserv.eliminar(emp);
+    		return new ResponseEntity<String>("Cliente eliminado",HttpStatus.OK);
+    	} else {
+    		return new ResponseEntity<String>("Cliente no existe",HttpStatus.OK);
+    	}
+        
     }
 }
