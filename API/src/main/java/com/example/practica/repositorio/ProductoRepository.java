@@ -1,8 +1,8 @@
 package com.example.practica.repositorio;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.example.practica.modelo.Producto;
+import com.example.practica.modelo.Productos;
 
-public interface ProductoRepository extends JpaRepository<Producto, Integer>{
+public interface ProductoRepository extends JpaRepository<Productos, Integer>{
 
 }
