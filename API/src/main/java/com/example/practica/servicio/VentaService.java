@@ -28,7 +28,7 @@ public class VentaService {
 	
 	// PENDIENTE Consultar ventas por clientes
 	public Optional<Ventas> searchbyNIF(Clientes c){
-		return ventarepo.findByCliente(c);
+		return ventarepo.findByC(c);
 	}
 
 	//Consultar producto por ID

@@ -10,7 +10,7 @@ import com.example.practica.modelo.Ventas;
 
 public interface VentaRepository extends JpaRepository<Ventas, Integer>{
 	
-	Optional<Ventas> findByCliente(Clientes c);
+	Optional<Ventas> findByC(Clientes c);
 
 }
 
