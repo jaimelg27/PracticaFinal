@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.demoWebHibernate.modelo.Departamentos;
-import com.example.demoWebHibernate.modelo.Empleados;
 import com.example.practica.modelo.*;
 import com.example.practica.repositorio.*;
 import com.example.practica.servicio.*;
@@ -140,5 +138,36 @@ public class Controlador {
 	@RequestMapping(value = "/ventas", method = RequestMethod.POST)
     public ResponseEntity<Ventas> createVent(@RequestBody Ventas v){
     	return new ResponseEntity<Ventas>(ventaserv.create(v),HttpStatus.OK);
+    }
+	
+	//Consultar ventas en intervalo de fechas
+	
+	//Consultar ventas por NIF cliente
+	
+	
+	//Consultar venta por campo clave
+	@RequestMapping(value = "/ventas/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Ventas> searchventbyID(@PathVariable("id") byte id) {
+    	Optional<Ventas> ventOpt=ventaserv.searchbyID(id);
+    	if (ventOpt.isPresent()) {
+    		Ventas v= ventOpt.get();
+    		return new ResponseEntity<Ventas>(v,HttpStatus.OK);
+    	}
+    	else
+    		return null;
+	}
+	
+	//Eliminar venta por campo clave
+	@RequestMapping(value = "/ventas/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteventbyID(@PathVariable("id") byte id){
+    	Optional<Ventas> ventOpt=ventaserv.searchbyID(id);
+    	if (ventOpt.isPresent()) {
+    		Ventas v=ventOpt.get();
+    		ventaserv.deletebyId(v);
+    		return new ResponseEntity<String>("Venta eliminada",HttpStatus.OK);
+    	} else {
+    		return new ResponseEntity<String>("Venta no existe",HttpStatus.OK);
+    	}
+        
     }
 }

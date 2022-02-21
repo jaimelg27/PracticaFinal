@@ -23,22 +23,17 @@ public class VentaService {
 	}
 	
 	// PENDIENTE Consultar ventas por fechas
-	public Optional<Ventas> searchbyDate(Date on, Date off){
-		return ventarepo.
-	}
+
 	
 	// PENDIENTE Consultar ventas por clientes
-	public Optional<Ventas> searchbyClientNIF(String NIF){
-		
-	}
-	
+
+	//Consultar producto por ID
 	public Optional<Ventas> searchbyID(int id){
 		return ventarepo.findById(id);
 	}
 	
 	//Eliminar producto por ID
-	public void deletebyId(int id) {
-		Ventas v=searchbyID(id).get();
+	public void deletebyId(Ventas v) {
 		ventarepo.delete(v);
 	}
 	
