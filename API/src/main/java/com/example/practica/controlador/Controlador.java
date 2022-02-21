@@ -143,10 +143,19 @@ public class Controlador {
 	//Consultar ventas en intervalo de fechas
 	
 	//Consultar ventas por NIF cliente
-	
+	@RequestMapping(value = "/ventas/nif/{nif}", method = RequestMethod.GET)
+    public ResponseEntity<Optional<Ventas>> searchventbyNIF(@PathVariable("nif") String nif){
+            Optional<Clientes> clientOpt = clienteserv.searchbyNIF(nif);
+            if(clientOpt.isPresent()) {
+                Clientes c = clientOpt.get();
+                Optional<Ventas> v = ventaserv.searchbyNIF(c);
+                return new ResponseEntity<Optional<Ventas>>(v,HttpStatus.OK);
+            }
+            return null;
+    }
 	
 	//Consultar venta por campo clave
-	@RequestMapping(value = "/ventas/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/ventas/id/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Ventas> searchventbyID(@PathVariable("id") byte id) {
     	Optional<Ventas> ventOpt=ventaserv.searchbyID(id);
     	if (ventOpt.isPresent()) {
@@ -158,7 +167,7 @@ public class Controlador {
 	}
 	
 	//Eliminar venta por campo clave
-	@RequestMapping(value = "/ventas/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/ventas/id/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteventbyID(@PathVariable("id") byte id){
     	Optional<Ventas> ventOpt=ventaserv.searchbyID(id);
     	if (ventOpt.isPresent()) {

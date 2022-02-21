@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.practica.modelo.Clientes;
 import com.example.practica.modelo.Productos;
 import com.example.practica.modelo.Ventas;
 import com.example.practica.repositorio.VentaRepository;
@@ -26,6 +27,9 @@ public class VentaService {
 
 	
 	// PENDIENTE Consultar ventas por clientes
+	public Optional<Ventas> searchbyNIF(Clientes c){
+		return ventarepo.findByCliente(c);
+	}
 
 	//Consultar producto por ID
 	public Optional<Ventas> searchbyID(int id){
