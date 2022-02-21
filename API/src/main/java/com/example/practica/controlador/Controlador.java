@@ -142,6 +142,7 @@ public class Controlador {
 	
 	//Consultar ventas en intervalo de fechas
 	
+	
 	//Consultar ventas por NIF cliente
 	@RequestMapping(value = "/ventas/nif/{nif}", method = RequestMethod.GET)
     public ResponseEntity<Optional<Ventas>> searchventbyNIF(@PathVariable("nif") String nif){
