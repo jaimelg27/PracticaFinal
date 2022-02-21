@@ -38,6 +38,14 @@ public class Controlador {
 	 	return "Practica 4";
 	}
 	
+	//PRODUCTOS
+	
+	//Insertar producto
+	@RequestMapping(value = "/productos", method = RequestMethod.POST)
+    public ResponseEntity<Productos> createProd(@RequestBody Productos p){
+    	return new ResponseEntity<Productos>(productoserv.create(p),HttpStatus.OK);
+    }
+	
 	//Devolver todos los productos
 	@RequestMapping(value="/productos", method=RequestMethod.GET)
 	public ResponseEntity<List<Productos>> consultaProd(){
@@ -76,17 +84,19 @@ public class Controlador {
         
     }
 	
-	//Devolver todos los clientes
-	@RequestMapping(value="/clientes", method=RequestMethod.GET)
-	public ResponseEntity<List<Clientes>> consultaCli(){
-		return new ResponseEntity<List<Clientes>>(clienteserv.getall(),HttpStatus.OK);		
-	}
+	//CLIENTES
 	
 	//Insertar cliente
 	@RequestMapping(value = "/clientes", method = RequestMethod.POST)
     public ResponseEntity<Clientes> createCli(@RequestBody Clientes c){
     	return new ResponseEntity<Clientes>(clienteserv.create(c),HttpStatus.OK);
     }
+	
+	//Devolver todos los clientes
+	@RequestMapping(value="/clientes", method=RequestMethod.GET)
+	public ResponseEntity<List<Clientes>> consultaCli(){
+		return new ResponseEntity<List<Clientes>>(clienteserv.getall(),HttpStatus.OK);		
+	}
 	
 	//Consultar cliente por NIF
 	@RequestMapping(value = "/clientes/{nif}", method = RequestMethod.GET)
@@ -99,6 +109,17 @@ public class Controlador {
     		return null;
 	}
 	
+	//Actualizar cliente por NIF
+	@RequestMapping(value = "/clientes/{nif}", method = RequestMethod.PUT)
+    public ResponseEntity<Clientes> updatebyNIF(@PathVariable("nif") String nif, @RequestBody Clientes c){
+        Optional<Clientes> clientOpt=clienteserv.searchbyNIF(nif);
+        if(clientOpt.isPresent()) {
+        	return new ResponseEntity<Clientes>(clienteserv.update(c),HttpStatus.OK);
+        } else {
+        	return null;
+        }
+    }
+	
 	//Eliminar cliente por NIF
 	@RequestMapping(value = "/clientes/{nif}", method = RequestMethod.DELETE)
     public ResponseEntity<String> deletebyNIF(@PathVariable("nif") String nif){
@@ -106,18 +127,14 @@ public class Controlador {
     	if (clientOpt.isPresent()) {
     		Clientes c=clientOpt.get();
     		clienteserv.delete(c);
-    		return new ResponseEntity<String>("Producto eliminado",HttpStatus.OK);
+    		return new ResponseEntity<String>("Cliente eliminado",HttpStatus.OK);
     	} else {
-    		return new ResponseEntity<String>("Producto no existe",HttpStatus.OK);
+    		return new ResponseEntity<String>("Cliente no existe",HttpStatus.OK);
     	}
         
     }
 	
-	//Insertar producto
-	@RequestMapping(value = "/productos", method = RequestMethod.POST)
-    public ResponseEntity<Productos> createProd(@RequestBody Productos p){
-    	return new ResponseEntity<Productos>(productoserv.create(p),HttpStatus.OK);
-    }
+	//VENTAS
 	
 	//Insertar venta
 	@RequestMapping(value = "/ventas", method = RequestMethod.POST)

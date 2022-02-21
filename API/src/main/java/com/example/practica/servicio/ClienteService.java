@@ -30,6 +30,10 @@ public class ClienteService {
 		return clienterepo.findByNIF(NIF);
 		
 	}
+	
+	public Clientes update(Clientes c) {
+		return clienterepo.save(c);
+	}
 
 	// PENDIENTE Actualizar cliente por NIF
 	public void updatebyNIF(String NIF, String name, String direccion, String poblacion, String telefono) {
