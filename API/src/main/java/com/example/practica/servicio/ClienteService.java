@@ -25,9 +25,10 @@ public class ClienteService {
 		return clienterepo.findAll();
 	}
 
-	// PENDIENTE Consultar producto por NIF
+	//Consultar producto por NIF
 	public Optional<Clientes> searchbyNIF(String NIF) {
-		return clienterepo.findBynif(NIF);
+		return clienterepo.findByNIF(NIF);
+		
 	}
 
 	// PENDIENTE Actualizar cliente por NIF
@@ -40,9 +41,8 @@ public class ClienteService {
 		clienterepo.save(c);
 	}
 
-	// PENDIENTE Eliminar cliente por NIF
-	public void deletebyId(String NIF) {
-		Clientes c = searchbyNIF(NIF).get();
+	//Eliminar cliente por NIF
+	public void delete(Clientes c) {
 		clienterepo.delete(c);
 	}
 

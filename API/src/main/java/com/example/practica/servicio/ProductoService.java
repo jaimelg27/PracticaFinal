@@ -29,17 +29,12 @@ public class ProductoService {
 	}
 	
 	//Actualizar campo por ID
-	public void updatebyID(int id, String descripcion, int stock, int pvp) {
-		Productos p=searchbyID(id).get();
-		p.setDescripcion(descripcion);
-		p.setStockanual(stock);
-		p.setPvp(pvp);
-		productorepo.save(p);
+	public Productos update(Productos p) {
+		return productorepo.save(p);
 	}
 	
 	//Eliminar producto por ID
-	public void deletebyId(int id) {
-		Productos p=searchbyID(id).get();
+	public void delete(Productos p) {
 		productorepo.delete(p);
 	}
 
