@@ -1,5 +1,6 @@
 package com.example.practica.servicio;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -24,9 +25,11 @@ public class VentaService {
 	}
 	
 	// PENDIENTE Consultar ventas por fechas
-
+	public List<Ventas> searchbyDate(LocalDate a, LocalDate b){
+		return ventarepo.findByfechaventaBetween(a, b);
+	}
 	
-	// PENDIENTE Consultar ventas por clientes
+	//Consultar ventas por clientes
 	public Optional<Ventas> searchbyNIF(Clientes c){
 		return ventarepo.findByC(c);
 	}

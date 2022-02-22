@@ -1,5 +1,9 @@
 package com.example.practica.controlador;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -141,6 +145,16 @@ public class Controlador {
     }
 	
 	//Consultar ventas en intervalo de fechas
+	@RequestMapping(value = "/ventas/fecha/inicio={fecha1}&fin={fecha2}", method = RequestMethod.GET)
+    public ResponseEntity<List<Ventas>> searchventbyDate(@PathVariable("fecha1") String fecha1, @PathVariable("fecha2") String fecha2) throws ParseException{
+		LocalDate fe1 = LocalDate.parse(fecha1);
+		LocalDate fe2 = LocalDate.parse(fecha2);
+		List<Ventas> ventas = ventaserv.searchbyDate(fe1, fe2);
+		if(ventas.isEmpty()) {
+			return null;
+		}
+        return new ResponseEntity<List<Ventas>>(ventas,HttpStatus.OK);
+    }
 	
 	
 	//Consultar ventas por NIF cliente
