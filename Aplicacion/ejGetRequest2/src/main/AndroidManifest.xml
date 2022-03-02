@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="es.dam.pmdm.ejemplospersistencia">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Practica Final"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".InsertarVentas"
+            android:exported="false" />
+        <activity
+            android:name=".MostrarVentasFechas"
+            android:exported="false" />
+        <activity
+            android:name=".BorrarVentas"
+            android:exported="false" />
+        <activity
+            android:name=".MostrarVentasNif"
+            android:exported="false" />
+        <activity
+            android:name=".MostrarVentasId"
+            android:exported="false" />
+        <activity
+            android:name=".MostrarTodasVentas"
+            android:exported="false" />
+        <activity
+            android:name=".MenuVentas"
+            android:exported="true" />
+        <activity
+            android:name=".MostrarProductos"
+            android:exported="true" />
+        <activity
+            android:name=".Menu"
+            android:exported="true" />
+        <activity android:name=".Inicio">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
